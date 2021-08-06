@@ -1,0 +1,20 @@
+{
+  "name": "@byjs/unified-spa-playground",
+  "version": "0.1.0",
+  "description": "just a micro frontends playground",
+  "scripts": {
+    "start:00": "npx http-server './app-00' -p 3001",
+    "start:01": "npx http-server './app-01' -p 3002",
+    "start:02": "npx http-server './app-02' -p 3003",
+    "start": "npx http-server './app-shell' -p 0 -o"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byjs-dev/unified-spa-playground.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/byjs-dev/unified-spa-playground/issues"
+  },
+  "homepage": "https://github.com/byjs-dev/unified-spa-playground#readme"
+}
