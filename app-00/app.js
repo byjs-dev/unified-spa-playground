@@ -9,14 +9,17 @@ class App00 extends HTMLElement {
   }
   render(location) {
     console.log("route change (second level / app-00)");
-    this.innerHTML = `
-      <a href="/">&lt; home</a> - 
-      <a href="/app-01/">app-01 </a> - 
-      <a href="/app-02/">app-02 &gt;</a>
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.innerHTML = `
       <h1>App 00</h1>
       <img src="https://via.placeholder.com/200x200?text=app-00" width="200" alt="app-00 placeholder image">
     `;
   }
+  ping(){
+    console.log('App00 ping');
+    this.shadowRoot.querySelector('h1').innerHTML = 'App 00 - '+ Math.round(Math.random() * 2e5).toString(16);
+  }
+
   disconnectedCallback() {
     this.unlisten();
   }

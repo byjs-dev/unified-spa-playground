@@ -9,7 +9,8 @@ class App01 extends HTMLElement {
   }
   render(location) {
     console.log("route change (second level / app-01)");
-    this.innerHTML = `
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.innerHTML = `
       <a href="/">&lt; home</a> -
       <a href="/app-02/">app-02 &gt;</a>
       <h1>App 01</h1>
