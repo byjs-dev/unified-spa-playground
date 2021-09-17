@@ -11,8 +11,6 @@ class App02 extends HTMLElement {
     console.log("route change (second level / app-02)");
     this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = `
-      <a href="/">&lt home</a> -
-      <a href="/app-01/">app-01 &gt</a>
       <h1>App 02</h1>
       <img src="https://via.placeholder.com/200x200?text=app-02" width="200" alt="app-02 placeholder image">
     `;

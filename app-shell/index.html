@@ -104,9 +104,9 @@
     const appContent = document.querySelector("#app-content");
 
     const routes = {
+        "/app-00/": "app-00",
         "/app-01/": "app-01",
         "/app-02/": "app-02",
-        "/":        "app-00"
     };
 
     function findComponentName(pathname) {
@@ -121,6 +121,11 @@
         const next    = findComponentName(location.pathname);
         const current = appContent.firstChild;
         if (current.nodeName.toLowerCase() !== next) {
+            if(next === undefined){ //404
+                console.log('unload');
+                appContent.innerHTML = `<span>Home - no app loaded</span>`;
+                return;
+            }
             console.log("app-shell updateTopLevelComponent change");
             console.log("route change (top level)");
             const newComponent = document.createElement(next);
@@ -136,11 +141,7 @@
     updateTopLevelComponent(window.location);
 
     document.addEventListener("click", e => {
-        console.log("app-shell click", e.target.nodeName);
-        e.target.ping();
-        e.preventDefault();
         if (e.target.nodeName === "A") {
-            console.log('yo');
             const href = e.target.getAttribute("href");
             window.appHistory.push(href);
             e.preventDefault();
