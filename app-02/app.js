@@ -8,7 +8,6 @@ class App02 extends HTMLElement {
     });
   }
   render(location) {
-    console.log("route change (second level / app-02)");
     this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = `
       <h1>App 02</h1>
@@ -20,4 +19,4 @@ class App02 extends HTMLElement {
   }
 }
 
-window.customElements.define("app-02", App02);
+window.customElements.define("app-two", App02);

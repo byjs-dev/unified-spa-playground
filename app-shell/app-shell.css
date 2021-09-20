@@ -1,4 +1,8 @@
 /* GLOBAL STYLES */
+:root {
+  --app-shell-color: black;
+  --app-content-color: darkred;
+}
 
 * {
   box-sizing: border-box;
@@ -6,84 +10,66 @@
 
 html {
   font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 20px;
-}
-
-a {
-  color: blue;
-}
-
-body {
-  padding: 1rem;
+  font-size: 16px;
 }
 
 #app-shell {
-  border: 3px solid #e5a044;
+  display: flex;
+  color: var(--app-shell-color);
   position: relative;
-  padding: 1rem;
+  border: 1px solid var(--app-shell-color);
+  padding: 1.5rem;
+  margin: 1rem;
 }
 
-#app-shell::after {
-  content: "Application Shell";
-  background: #e5a044;
-}
-
-#app-content > * {
-  padding: 1rem;
-  display: block;
-  position: relative;
-  min-height: 330px;
-  max-width: 400px;
-  margin: 0 auto 2rem;
-}
-
-#app-shell::after,
-#app-content > *::after {
+#app-shell::before {
+  content: 'APP SHELL';
+  font-weight: bold;
+  background: #fff;
+  padding: .25rem;
   position: absolute;
-  color: white;
-  display: block;
-  line-height: 1.5rem;
-  padding: 0 0.5em;
+  top: 0;
+  left: 1rem;
+  transform: translateY(-50%);
 }
 
-#app-content > *::after {
-  bottom: -1.5rem;
-  right: -3px;
+#app-content {
+  position: relative;
+  flex: 1;
+  border: 1px solid var(--app-content-color);
+  padding: 1.5rem;
+  margin: .5rem;
 }
 
-#app-shell::after {
-  left: -3px;
-  bottom: 0;
+#app-content::before {
+  color: var(--app-content-color);
+  content: 'APP CONTENT';
+  font-weight: bold;
+  background: #fff;
+  padding: .25rem;
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  transform: translateY(-50%);
 }
 
-inspire-pages {
-  border: 3px solid #7c9b2f;
+#shell-navigation {
+  margin-right: 1.5rem;
 }
 
-inspire-pages::after {
-  content: "Team Inspire";
-  background: #7c9b2f;
+#shell-navigation ul{
+  list-style-type: none;
+  padding: 0;
 }
 
-decide-pages {
-  border: 3px solid #bc3630;
-}
-
-decide-pages::after {
-  content: "Team Decide";
-  background: #bc3630;
-}
-
-checkout-pages {
-  border: 3px solid #5f9dc8;
-}
-
-checkout-pages::after {
-  content: "Team Checkout";
-  background: #5f9dc8;
+#shell-navigation ul li{
+  padding: .5rem;
 }
 
 footer {
-  margin-bottom: 1rem;
-  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
 }

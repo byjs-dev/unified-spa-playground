@@ -8,8 +8,10 @@ class App00 extends HTMLElement {
     });
   }
   render(location) {
-    console.log("route change (second level / app-00)");
-    this.attachShadow({ mode: "open" });
+    console.log("this.shadowRoot",this.shadowRoot);
+    if(this.shadowRoot === null){
+      this.attachShadow({ mode: "open" });
+    }
     this.shadowRoot.innerHTML = `
       <h1>App 00</h1>
       <img src="https://via.placeholder.com/200x200?text=app-00" width="200" alt="app-00 placeholder image">
@@ -25,4 +27,4 @@ class App00 extends HTMLElement {
   }
 }
 
-window.customElements.define("app-00", App00);
+window.customElements.define("app-zero", App00);

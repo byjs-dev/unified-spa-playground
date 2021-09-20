@@ -1,82 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Unified SPA Playground</title>
     <script src="https://unpkg.com/history@4.9.0"></script>
     <script src="http://localhost:3001/app.js" async></script>
     <script src="http://localhost:3002/app.js" async></script>
     <script src="http://localhost:3003/app.js" async></script>
-    <style>
-        :root {
-            --app-shell-color: black;
-            --app-content-color: darkred;
-        }
-
-        body {
-            font-size: 16px;
-            font-family: "Helvetica Neue", Arial, sans-serif;
-        }
-
-        #app-shell {
-            display: flex;
-            color: var(--app-shell-color);
-            position: relative;
-            border: 1px solid var(--app-shell-color);
-            padding: 1.5rem;
-            margin: 1rem;
-        }
-
-        #app-shell::before {
-            content: 'APP SHELL';
-            font-weight: bold;
-            background: #fff;
-            padding: .25rem;
-            position: absolute;
-            top: 0;
-            left: 1rem;
-            transform: translateY(-50%);
-        }
-
-        #app-content {
-            position: relative;
-            flex: 1;
-            border: 1px solid var(--app-content-color);
-            padding: 1.5rem;
-            margin: .5rem;
-        }
-
-        #app-content::before {
-            color: var(--app-content-color);
-            content: 'APP CONTENT';
-            font-weight: bold;
-            background: #fff;
-            padding: .25rem;
-            position: absolute;
-            top: 0;
-            left: 1rem;
-            transform: translateY(-50%);
-        }
-
-        #shell-navigation {
-            margin-right: 1.5rem;
-        }
-
-        #shell-navigation ul{
-            list-style-type: none;
-            padding: 0;
-        }
-
-        #shell-navigation ul li{
-            padding: .5rem;
-        }
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="/app-shell.css"/>
 </head>
 <body>
     <div id="app-shell">
@@ -86,76 +16,23 @@
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="/app-00/">App-00</a>
+                    <a href="/app-00/">App Zero</a>
                 </li>
                 <li>
-                    <a href="/app-01/">App-01</a>
+                    <a href="/app-01/">App One</a>
                 </li>
                 <li>
-                    <a href="/app-02/">App-02</a>
+                    <a href="/app-02/">App Two</a>
                 </li>
             </ul>
         </nav>
         <div id="app-content"><span>content not loaded yet</span></div>
     </div>
 
-<script type="module">
-    console.log("app-shell init");
-    const appContent = document.querySelector("#app-content");
-
-    const routes = {
-        "/app-00/": "app-00",
-        "/app-01/": "app-01",
-        "/app-02/": "app-02",
-    };
-
-    function findComponentName(pathname) {
-        const prefix = Object.keys(routes).find(key =>
-            pathname.startsWith(key)
-        );
-        return routes[prefix];
-    }
-
-    function updateTopLevelComponent(location) {
-        console.log("app-shell updateTopLevelComponent");
-        const next    = findComponentName(location.pathname);
-        const current = appContent.firstChild;
-        if (current.nodeName.toLowerCase() !== next) {
-            if(next === undefined){ //404
-                console.log('unload');
-                appContent.innerHTML = `<span>Home - no app loaded</span>`;
-                return;
-            }
-            console.log("app-shell updateTopLevelComponent change");
-            console.log("route change (top level)");
-            const newComponent = document.createElement(next);
-            appContent.replaceChild(newComponent, current);
-        }
-        else {
-            console.log("app-shell updateTopLevelComponent no-change");
-        }
-    }
-
-    window.appHistory = window.History.createBrowserHistory();
-    window.appHistory.listen(updateTopLevelComponent);
-    updateTopLevelComponent(window.location);
-
-    document.addEventListener("click", e => {
-        if (e.target.nodeName === "A") {
-            const href = e.target.getAttribute("href");
-            window.appHistory.push(href);
-            e.preventDefault();
-        }
-    });
-</script>
-
-<footer>
-    random string: <strong></strong> / generated on app shell load<br/>
-    will only change on a <strong>hard navigation</strong>
-</footer>
-<script type="module">
-    const randomString                                = Math.round(Math.random() * 2e5).toString(16);
-    document.querySelector("footer strong").innerHTML = randomString;
-</script>
+    <footer>
+        random string: <strong></strong> / generated on app shell load<br/>
+        will only change on a <strong>hard navigation</strong>
+    </footer>
+    <script type="module" src="/main.js"></script>
 </body>
 </html>
